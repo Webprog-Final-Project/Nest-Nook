@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
 	// Prepare and bind SQL statement
 	$insert_query = $conn->prepare(
 		"INSERT INTO users (first_name, last_name, email, password, role)
-		VALUES (?, ?, ?, ?, 'Seller')"
+		VALUES (?, ?, ?, ?, 'Seller')" 
 	);
 	$insert_query->bind_param("ssss", $first_name, $last_name, $email, $password);
 
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
 	$email = $_POST['email'];
-	$password = $_POST['password'];
+	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 	// Execute SQL statement
 	if ($insert_query->execute()) {
@@ -30,10 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
     		echo "Error: " . $insert_query->error;
 	}
 	$insert_query->close();
-} else {
-	
-	// Error handling
-	
 }
 closeConnection($conn);
 ?>
