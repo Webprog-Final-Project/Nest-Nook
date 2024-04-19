@@ -67,4 +67,45 @@ function addNewUser($conn, $first_name, $last_name, $email, $password) {
 	}
 	$insert_query->close();
 }
-?>
+
+/*--- Login: Check if credentials correct / User is in the Database ---*/
+
+function findUser($conn, $email, $password) {
+	// Prepare and bind SQL statement
+	$select_query = $conn->prepare(
+		"SELECT email, password FROM users WHERE email = ? AND password = ?"
+	);
+	$select_query->bind_param("ss", $email, $password);
+
+	// Execute SQL statement
+	if ($select_query->execute()) {
+		$select_query->store_result();
+
+		// If credentials are correct / found: return true
+		if ($select_query->num_rows === 1) {
+			$select_query->close();
+			return true;
+		}
+		// If not: return false
+		else {
+			$select_query->close();
+			return false;
+		}
+	}
+	else {
+		$select_query->close();
+		return false;
+	}
+}
+
+/*--- Login: Display error message when login fails ---*/
+
+function displayErrorMessage($error) {
+    switch ($error) {
+        case 1:
+            return "Invalid email or password. Please try again.";
+            break;
+        default:
+            return "An unexpected error occurred. Please try again later.";
+    }
+}
