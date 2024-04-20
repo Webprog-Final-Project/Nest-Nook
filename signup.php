@@ -1,7 +1,7 @@
 <?php require ('functions.php');
 session_start();
 
-// Check if an error occurred during login
+// Check if an error occurred during signup
 $error = isset($_GET['error']) ? $_GET['error'] : null;
 ?>
 <!DOCTYPE html>
