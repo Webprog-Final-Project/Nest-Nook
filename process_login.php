@@ -6,19 +6,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
     && !empty($_POST['email'])
     && !empty($_POST['password'])
 ) {
+    $user_id = '';
     $first_name = '';
     $last_name = '';
     $email = $_POST['email'];
     $password = $_POST['password'];
     $role = '';
 
-    if (findUser($conn, $first_name, $last_name, $email, $password, $role)) {
+    if (findUser($conn, $user_id,$first_name, $last_name, $email, $password, $role)) {
         session_start();
+        $_SESSION['user_id'] = $user_id;
         $_SESSION['first_name'] = $first_name;
         $_SESSION['last_name'] = $last_name;
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $role;
-        header('location: Homepage.html');
+        header('location: seller_dashboard.php');
         exit;
     } else {
         // Redirect the user to the login page with an error parameter
