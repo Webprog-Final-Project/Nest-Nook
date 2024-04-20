@@ -71,12 +71,13 @@ function addNewUser($conn, $first_name, $last_name, $email, $password) {
 
 /*--- Login: Check if credentials correct / User is in the Database ---*/
 
-function findUser($conn, $email, $password) {
+function findUser($conn, &$first_name, &$last_name, $email, $password, &$role) {
     $db_email = '';
     $db_password = '';
+
 	// Prepare and bind SQL statement
 	$select_query = $conn->prepare(
-		"SELECT email, password FROM users WHERE email = ?"
+		"SELECT first_name, last_name, email, password, role FROM users WHERE email = ?"
 	);
 	$select_query->bind_param("s", $email);
 
@@ -88,7 +89,7 @@ function findUser($conn, $email, $password) {
 		if ($select_query->num_rows === 1) {
 
             // Assign query result to variables
-            $select_query->bind_result($db_email, $db_password);
+            $select_query->bind_result($first_name, $last_name, $db_email, $db_password, $role);
             $select_query->fetch();
             $select_query->close();
 
