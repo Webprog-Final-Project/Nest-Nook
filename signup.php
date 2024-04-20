@@ -1,3 +1,9 @@
+<?php require ('functions.php');
+session_start();
+
+// Check if an error occurred during login
+$error = isset($_GET['error']) ? $_GET['error'] : null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +13,10 @@
 <body>
 <h1>Sign up</h1>
 <form action = "process_signup.php" method="post">
+
+    <?php if ($error): ?>
+        <p><?php echo displayErrorMessage($error); ?></p>
+    <?php endif; ?>
 
     <label for="first_name">First Name</label>
     <input type="text" id="first_name" name="first_name" required><br>
