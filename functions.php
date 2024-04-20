@@ -119,6 +119,9 @@ function displayErrorMessage($error) {
         case 1:
             return "Invalid email or password. Please try again.";
             break;
+	case 2:
+            return "This email is already registered to an account. Please go to the login page.";
+            break;
         default:
             return "An unexpected error occurred. Please try again later.";
     }
