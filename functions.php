@@ -53,7 +53,8 @@ function verifyEmailFormat($email) {
     if (preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
         return true;
     } else {
-        return false;
+        header("Location: signup.php?error=3");
+        exit;
     }
 }
 
@@ -131,6 +132,9 @@ function displayErrorMessage($error) {
             break;
 	case 2:
             return "This email is already registered to an account. Please go to the login page.";
+            break;
+	case 3:
+            return "Please enter a valid email address.";
             break;
         default:
             return "An unexpected error occurred. Please try again later.";
