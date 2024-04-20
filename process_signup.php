@@ -16,7 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
 	if (verifyUniqueUser($conn, $email)) {
 		addNewUser($conn,$first_name, $last_name, $email, $password);
 	} else {
-		// User already registered
+		// Redirect the user to the signup page with an error parameter
+		header("Location: signup.php?error=2");
+		exit;
 	}
 }
 closeConnection($conn);
