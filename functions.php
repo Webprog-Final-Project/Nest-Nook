@@ -82,13 +82,13 @@ function addNewUser($conn, $first_name, $last_name, $email, $password) {
 
 /*--- Login: Check if credentials correct / User is in the Database ---*/
 
-function findUser($conn, &$first_name, &$last_name, $email, $password, &$role) {
+function findUser($conn, &$user_id, &$first_name, &$last_name, $email, $password, &$role) {
     $db_email = '';
     $db_password = '';
 
 	// Prepare and bind SQL statement
 	$select_query = $conn->prepare(
-		"SELECT first_name, last_name, email, password, role FROM users WHERE email = ?"
+		"SELECT user_id, first_name, last_name, email, password, role FROM users WHERE email = ?"
 	);
 	$select_query->bind_param("s", $email);
 
@@ -100,7 +100,7 @@ function findUser($conn, &$first_name, &$last_name, $email, $password, &$role) {
 		if ($select_query->num_rows === 1) {
 
             // Assign query result to variables
-            $select_query->bind_result($first_name, $last_name, $db_email, $db_password, $role);
+            $select_query->bind_result($user_id, $first_name, $last_name, $db_email, $db_password, $role);
             $select_query->fetch();
             $select_query->close();
 
@@ -130,10 +130,10 @@ function displayErrorMessage($error) {
         case 1:
             return "Invalid email or password. Please try again.";
             break;
-	case 2:
+        case 2:
             return "This email is already registered to an account. Please go to the login page.";
             break;
-	case 3:
+        case 3:
             return "Please enter a valid email address.";
             break;
         default:
