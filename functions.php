@@ -47,6 +47,16 @@ function verifyUniqueUser($conn, $email) {
 	}
 }
 
+/*--- Verify email is correctly formatted ---*/
+
+function verifyEmailFormat($email) {
+    if (preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /*--- Add new user from Signup page after verifying ---*/
 
 function addNewUser($conn, $first_name, $last_name, $email, $password) {
