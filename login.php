@@ -12,7 +12,7 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
 </head>
 <body>
 <h1>Login</h1>
-<form action = "process_login.php" method="get">
+<form action = "process_login.php" method="post">
     <?php if ($error): ?>
         <p><?php echo displayErrorMessage($error); ?></p>
     <?php endif; ?>
