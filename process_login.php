@@ -2,27 +2,25 @@
 
 $conn = openConnection("localhost", "lkinsey2", "lkinsey2", "lkinsey2");
 
-if ($_SERVER["REQUEST_METHOD"] == "GET"
-    && !empty($_GET['first_name'])
-    && !empty($_GET['last_name'])
-    && !empty($_GET['email'])
-    && !empty($_GET['password'])
+if ($_SERVER["REQUEST_METHOD"] == "POST"
+    && !empty($_POST['email'])
+    && !empty($_POST['password'])
 ) {
-    $first_name = $_GET['first_name'];
-    $last_name = $_GET['last_name'];
-    $email = $_GET['email'];
-    $password = password_hash($_GET['password'], PASSWORD_DEFAULT);
+    $first_name = '';
+    $last_name = '';
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $role = '';
 
-    if (findUser($conn, $email, $password)) {
-        session_destroy();
+    if (findUser($conn, $first_name, $last_name, $email, $password, $role)) {
         session_start();
-        $_SESSION['fist_name'] = $first_name;
+        $_SESSION['first_name'] = $first_name;
         $_SESSION['last_name'] = $last_name;
         $_SESSION['email'] = $email;
+        $_SESSION['role'] = $role;
         header('location: Homepage.html');
         exit;
-    }
-    else {
+    } else {
         // Redirect the user to the login page with an error parameter
         header("Location: login.php?error=1");
         exit;
