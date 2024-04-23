@@ -60,14 +60,14 @@ function verifyEmailFormat($email) {
 
 /*--- Add new user from Signup page after verifying ---*/
 
-function addNewUser($conn, $first_name, $last_name, $email, $password) {
+function addNewUser($conn, $first_name, $last_name, $email, $password, $role) {
 
 	// Prepare and bind SQL statement
 	$insert_query = $conn->prepare(
 		"INSERT INTO users (first_name, last_name, email, password, role)
-		VALUES (?, ?, ?, ?, 'Seller')"
+		VALUES (?, ?, ?, ?, ?)"
 	);
-	$insert_query->bind_param("ssss", $first_name, $last_name, $email, $password);
+	$insert_query->bind_param("sssss", $first_name, $last_name, $email, $password, $role);
 
 	// Execute SQL statement
 	if ($insert_query->execute()) {
