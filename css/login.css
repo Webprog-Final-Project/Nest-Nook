@@ -1,0 +1,114 @@
+
+body {
+    background-color: #fcf9f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #2e6615;
+}
+
+.nav_bar {
+    background-color: #eed9c4;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+    color: #2e6615;
+    font-family: Verdana, sans-serif;
+    font-size: 30pt;
+}
+
+.nav_links,
+.auth_links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav_links {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav_links li,
+.auth_links li {
+    display: inline;
+}
+
+.nav_links a {
+    font-size: 16pt;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    color: #2e6615;
+}
+
+.auth_links a {
+    font-size: 16pt;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #2e6615;
+}
+
+.auth_links a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.login_form {
+    text-align: center;
+    margin: 50px auto;
+    width: 90%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d9b99b;
+}
+
+.login_form h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login_form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.login_form input[type="text"],
+.login_form input[type="password"],
+.login_form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login_form input[type="submit"] {
+    background-color: #2e6615;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login_form input[type="submit"]:hover {
+    background-color: #4caf50;
+}
+
+.error {
+    color: #ff0000;
+    margin-bottom: 10px;
+}
