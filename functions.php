@@ -65,7 +65,7 @@ function addNewUser($conn, $first_name, $last_name, $email, $password, $role) {
 	// Prepare and bind SQL statement
 	$insert_query = $conn->prepare(
 		"INSERT INTO users (first_name, last_name, email, password, role)
-		VALUES (?, ?, ?, ?, ?)"
+		    VALUES (?, ?, ?, ?, ?)"
 	);
 	$insert_query->bind_param("sssss", $first_name, $last_name, $email, $password, $role);
 
@@ -123,6 +123,50 @@ function findUser($conn, &$user_id, &$first_name, &$last_name, $email, $password
 	}
 }
 
+/*--- New Property: Insert property info ---*/
+
+function addProperty($conn, $user_id, &$property_id, $price, $beds, $baths, $sqft, $description, $address, $residence_type, $year_built, $date_listed) {
+
+    // Insert new property
+    $insert_query = $conn->prepare(
+        "INSERT INTO properties (owner_id, price, beds, baths, sqft, description, address, residence_type, year_built, date_listed)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    );
+    $insert_query->bind_param("iiiiisssis", $user_id, $price, $beds, $baths, $sqft, $description, $address, $residence_type, $year_built, $date_listed);
+
+    if ($insert_query->execute()) {
+        $insert_query->close();
+
+        // Find the new property_id and save it for addPictures()
+        $select_query = $conn->prepare(
+            "SELECT MAX(property_id) FROM properties"
+        );
+        $select_query->execute();
+        $select_query->bind_result($property_id);
+        $select_query->fetch();
+        $select_query->close();
+        return true;
+    }
+    else {
+        $insert_query->close();
+        return false;
+    }
+}
+
+/*--- New Property: Insert pictures ---*/
+
+function addPictures($conn, $property_id, $exterior, $interior) {
+    $insert_query = $conn->prepare("INSERT INTO pictures (property_id, exterior, interior) VALUES (?, ?, ?)");
+    $insert_query->bind_param("iss", $property_id, $exterior, $interior);
+    if ($insert_query->execute()) {
+        $insert_query->close();
+        return true;
+    } else {
+        $insert_query->close();
+        return false;
+    }
+}
+
 /*--- Login: Display error message when login fails ---*/
 
 function displayErrorMessage($error) {
@@ -135,6 +179,9 @@ function displayErrorMessage($error) {
             break;
         case 3:
             return "Please enter a valid email address.";
+            break;
+        case 4:
+            return "There was a problem adding your property.";
             break;
         default:
             return "An unexpected error occurred. Please try again later.";
