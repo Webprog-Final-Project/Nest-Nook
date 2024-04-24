@@ -21,12 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $role;
         header('location: seller_dashboard.php');
-        exit;
     } else {
         // Redirect the user to the login page with an error parameter
         header("Location: login.php?error=1");
-        exit;
     }
+    exit;
 }
 closeConnection($conn);
 ?>
