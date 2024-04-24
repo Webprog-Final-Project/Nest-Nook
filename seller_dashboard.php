@@ -1,8 +1,16 @@
 <?php require ('functions.php');
 session_start();
+
+// For displaying user's properties
+$conn = openConnection("localhost", "lkinsey2", "lkinsey2", "lkinsey2");
+$user_id = $_SESSION['user_id'];
+
+// Welcome message
 echo "Welcome " . $_SESSION['first_name'] . " " . $_SESSION['last_name'];
 
+// Message to display when new property is added
 $message = isset($_GET['message']) ? $_GET['message'] : null;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +29,6 @@ $message = isset($_GET['message']) ? $_GET['message'] : null;
         <?php } ?>
     </div>
     <div>
-        <?php /*if ($message) { ?>
-                <?=$message?>
-        <?php } */?>
+        <?php displayPropertyCards($conn, $user_id); ?>
     </div>
 </body>
