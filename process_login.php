@@ -20,7 +20,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
         $_SESSION['last_name'] = $last_name;
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $role;
-        header('location: seller_dashboard.php');
+        switch ($role) {
+            case 'Seller':
+                header('location: seller_dashboard.php');
+                break;
+            case 'Buyer':
+                header('location: buyer_dashboard.php');
+                break;
+            case 'Admin':
+                header('location: admin_dashboard.php');
+                break;
+            default:
+                header('location: seller_dashboard.php');
+        }
     } else {
         // Redirect the user to the login page with an error parameter
         header("Location: login.php?error=1");
