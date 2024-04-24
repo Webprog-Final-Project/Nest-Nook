@@ -155,9 +155,11 @@ function addProperty($conn, $user_id, &$property_id, $price, $beds, $baths, $sqf
 
 /*--- New Property: Insert pictures ---*/
 
-function addPictures($conn, $property_id, $exterior, $interior) {
-    $insert_query = $conn->prepare("INSERT INTO pictures (property_id, exterior, interior) VALUES (?, ?, ?)");
-    $insert_query->bind_param("iss", $property_id, $exterior, $interior);
+function addPictures($conn, $property_id, $exterior, $exterior_file_type, $interior, $interior_file_type) {
+    $insert_query = $conn->prepare("INSERT INTO pictures (property_id, exterior, exterior_file_type, interior, interior_file_type) VALUES (?, ?, ?, ?, ?)");
+    $insert_query->bind_param("ibsbs", $property_id, $exterior, $exterior_file_type, $interior, $interior_file_type);
+    $insert_query->send_long_data(1, $exterior);
+    $insert_query->send_long_data(2, $interior);
     if ($insert_query->execute()) {
         $insert_query->close();
         return true;
@@ -165,6 +167,58 @@ function addPictures($conn, $property_id, $exterior, $interior) {
         $insert_query->close();
         return false;
     }
+}
+
+/*--- Used to display all properties of the user ---*/
+
+function displayPropertyCards($conn, $user_id) {
+    $property_id = '';
+    $price = '';
+    $beds = '';
+    $baths = '';
+    $sqft = '';
+    $address = '';
+    $select_query = $conn->prepare("SELECT property_id, price, beds, baths, sqft, address FROM properties WHERE owner_id = ?");
+    $select_query->bind_param("i", $user_id);
+
+    if ($select_query->execute()) {
+        $select_query->store_result();
+        $select_query->bind_result($property_id, $price, $beds, $baths, $sqft, $address);
+
+        while ($select_query->fetch()) {
+            echo "<div class='property-card'>";
+            echo "<div>" . displayExterior($conn, $property_id) . "</div>";
+            echo "<div>$" . number_format($price, 0, '', ',') . "</div>";
+            echo "<div>" . $beds . " bed" . "</div>";
+            echo "<div>" . $baths . " bath" . "</div>";
+            echo "<div>" . number_format($sqft, 0, '', ',') . " sqft" . "</div>";
+            echo "<div>" . $address . "</div>";
+            echo "</div>";
+        }
+    } else {
+        echo "Error executing query: " . $conn->error;
+    }
+
+    // Close the prepared statement
+    $select_query->close();
+}
+
+/*--- Used to display all properties' exterior pictures ---*/
+
+function displayExterior($conn, $property_id) {
+    $exterior = '';
+    $exterior_file_type = '';
+    $select_query = $conn->prepare("SELECT exterior, exterior_file_type FROM pictures WHERE property_id = ?");
+    $select_query->bind_param("i", $property_id);
+    $select_query->execute();
+    $select_query->bind_result($exterior, $exterior_file_type);
+    $select_query->fetch();
+    $select_query->close();
+
+    // Output the image data as a base64-encoded string
+    $imageDataEncoded = base64_encode($exterior);
+
+    return "<img src='data:$exterior_file_type;base64,$imageDataEncoded' alt='Exterior' height='175px'>";
 }
 
 /*--- Login: Display error message when login fails ---*/
@@ -186,4 +240,20 @@ function displayErrorMessage($error) {
         default:
             return "An unexpected error occurred. Please try again later.";
     }
+}
+
+/*--- Get image file type ---*/
+
+function getImageType($image) {
+    // Create a FileInfo object
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+
+    // Get the MIME type of the uploaded image
+    $mime = finfo_file($finfo, $image);
+
+    // Close the FileInfo object
+    finfo_close($finfo);
+
+    // Output the MIME type
+    return $mime;
 }
