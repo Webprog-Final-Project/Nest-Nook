@@ -8,10 +8,10 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Add Property</title>
 </head>
 <body>
-<h1>Sign up</h1>
+<h1>Add Property</h1>
 <form action = "process_new_property.php" method="post" enctype="multipart/form-data">
 
     <?php if ($error): ?>
