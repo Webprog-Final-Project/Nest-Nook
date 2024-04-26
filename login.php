@@ -15,7 +15,7 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
 <nav class="nav_bar">
     <h2 class="title">Nest Nook</h2>
     <ul class="nav_links">
-        <li class="home"><a href="Homepage.html">Home</a></li>
+        <li class="home"><a href="homepage.html">Home</a></li>
         <li class="buy"><a href="buy.html">Buy</a></li>
         <li class="sell"><a href="sell.html">Sell</a></li>
         <li class="contact"><a href="contact.html">Contact</a></li>
