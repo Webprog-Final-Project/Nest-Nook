@@ -71,7 +71,7 @@ function addNewUser($conn, $first_name, $last_name, $email, $password, $role) {
 
 	// Execute SQL statement
 	if ($insert_query->execute()) {
-		header("location:Homepage.html");
+		header("location:homepage.html");
 		exit;
 	}
 	else {
