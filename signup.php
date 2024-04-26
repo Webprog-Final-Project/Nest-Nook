@@ -47,15 +47,15 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
         <input type="password" id="password" name="password" required><br>
 
         <div class="radio-group">
-            <input type="radio" id="buyer" name="role" value="Buyer">
+            <input type="radio" id="buyer" name="role" value="Buyer" required>
             <label for="buyer">Buyer</label>
         </div>
         <div class="radio-group">
-            <input type="radio" id="seller" name="role" value="Seller">
+            <input type="radio" id="seller" name="role" value="Seller" required>
             <label for="seller">Seller</label>
         </div>
         <div class="radio-group">
-            <input type="radio" id="admin" name="role" value="Admin">
+            <input type="radio" id="admin" name="role" value="Admin" required>
             <label for="admin">Admin</label>
         </div>
 
