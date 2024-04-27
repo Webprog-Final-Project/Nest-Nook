@@ -35,15 +35,17 @@ function verifyUniqueUser($conn, $email) {
 			$select_query->close();
 			return true;
 		}
-		// If not: return false
+		// If not: set error
 		else {
 			$select_query->close();
-			return false;
+            header("Location: signup.php?error=2");
+            exit;
 		}
 	}
 	else {
 		$select_query->close();
-		return false;
+        header("Location: signup.php?error=default");
+        exit;
 	}
 }
 
@@ -71,13 +73,15 @@ function addNewUser($conn, $first_name, $last_name, $email, $password, $role) {
 
 	// Execute SQL statement
 	if ($insert_query->execute()) {
-		header("location:homepage.html");
+        $insert_query->close();
+		header("location: signup.php?message=1");
 		exit;
 	}
 	else {
-		echo "Error: " . $insert_query->error;
+        $insert_query->close();
+        header("Location: signup.php?error=$insert_query->error");
+        exit;
 	}
-	$insert_query->close();
 }
 
 /*--- Login: Check if credentials correct / User is in the Database ---*/
