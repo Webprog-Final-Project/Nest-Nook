@@ -1,8 +1,22 @@
 <?php require ('functions.php');
 session_start();
 
-// Check if an error occurred during signup
+// Confirmation for sign up
+$message = isset($_GET['message']) ? $_GET['message'] : null;
+// Error for sign up
 $error = isset($_GET['error']) ? $_GET['error'] : null;
+
+// reset the message and error displays when confirmed is clicked and redirect
+if (isset($_POST['message'])) {
+    $message = null;
+    header('Location:login.php');
+    exit();
+}
+else if (isset($_POST['error'])) {
+    $error = null;
+    header('Location:signup.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,11 +42,32 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
 
 <div class="login_form">
     <h1>Sign up</h1>
-    <form action="process_signup.php" method="post">
 
-        <?php if ($error): ?>
-            <p class="error"><?php echo displayErrorMessage($error); ?></p>
-        <?php endif; ?>
+    <!--- Confirmation for sign up --->
+    <?php if ($message) { ?>
+        <div class="message">
+            <div>
+                <?= displayMessage($message) ?>
+            </div>
+            <form action="signup.php" method="post">
+                <input type="submit" name="message" value="Confirm">
+            </form>
+        </div>
+    <?php } ?>
+
+    <!--- Error for sign up --->
+    <?php if ($error) { ?>
+        <div class="error">
+            <div>
+                <?= displayError($error) ?>
+            </div>
+            <form action="signup.php" method="post">
+                <input type="submit" name="error" value="Confirm">
+            </form>
+        </div>
+    <?php } ?>
+
+    <form action="process_signup.php" method="post">
 
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" name="first_name" required><br>
@@ -58,7 +93,6 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
             <input type="radio" id="admin" name="role" value="Admin" required>
             <label for="admin">Admin</label>
         </div>
-
 
         <input type="submit" value="Submit">
     </form>
