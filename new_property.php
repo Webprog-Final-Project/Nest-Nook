@@ -11,6 +11,9 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
         <title>Add Property</title>
     </head>
     <body>
+    <div class="back_button">
+        <a href="seller_dashboard.php">Back</a>
+    </div>
         <h1>Add Property</h1>
         <form action = "process_new_property.php" method="post" enctype="multipart/form-data">
         
@@ -26,13 +29,13 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
         
             <div>
                 <p>Residence Type</p>
-                <input type="radio" id="house" name="residence_type" value="House">
+                <input type="radio" id="house" name="residence_type" value="House" required>
                 <label for="house">House</label><br>
         
-                <input type="radio" id="apartment" name="residence_type" value="Apartment">
+                <input type="radio" id="apartment" name="residence_type" value="Apartment" required>
                 <label for="apartment">Apartment</label><br>
         
-                <input type="radio" id="condominium" name="residence_type" value="Condominium">
+                <input type="radio" id="condominium" name="residence_type" value="Condominium" required>
                 <label for="condominium">Condominium</label>
         
             </div>
