@@ -17,10 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
 
 	if (verifyUniqueUser($conn, $email) && verifyEmailFormat($email)) {
 		addNewUser($conn,$first_name, $last_name, $email, $password, $role);
-	} else {
-		// Redirect the user to the signup page with an error parameter
-		header("Location: signup.php?error=2");
-		exit;
 	}
 }
 closeConnection($conn);
