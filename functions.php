@@ -334,9 +334,9 @@ function updateProperty($conn, $property_id, $price, $beds, $baths, $sqft, $resi
     }
 }
 
-/*--- Login: Display error message when login fails ---*/
+/*--- Display error message ---*/
 
-function displayErrorMessage($error) {
+function displayError($error) {
     switch ($error) {
         case 1:
             return "Invalid email or password. Please try again.";
@@ -355,6 +355,33 @@ function displayErrorMessage($error) {
             break;
         default:
             return "An unexpected error occurred. Please try again later.";
+    }
+}
+
+/*--- Display message ---*/
+
+function displayMessage($message) {
+    switch ($message) {
+        case 1:
+            return "Thank you for signing up with us!";
+            break;
+        case 2:
+            return "You've logged in successfully!";
+            break;
+        case 3:
+            return "Your new property has been added!";
+            break;
+        case 4:
+            return "Property successfully updated!";
+            break;
+        case 5:
+            return "Are you sure you want to delete this property?";
+            break;
+        case 6:
+            return "Property successfully deleted!";
+            break;
+        default:
+            return false;
     }
 }
 
