@@ -244,8 +244,6 @@ function displayInterior($conn, $property_id) {
 /*--- Displays full property details ---*/
 
 function propertyDetails($conn, $property_id) {
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
     $price = '';
     $beds = '';
     $baths = '';
@@ -287,6 +285,55 @@ function propertyDetails($conn, $property_id) {
     $select_query->close();
 }
 
+/*--- For edit_property page: fills the forms with the current values so user can edit ---*/
+
+function populateForm($conn, $property_id, &$price, &$address, &$beds, &$baths, &$sqft, &$year_built, &$description) {
+
+    $select_query = $conn->prepare(
+        "SELECT price, beds, baths, sqft, description, address, year_built FROM properties WHERE property_id = ?");
+    $select_query->bind_param("i", $property_id);
+
+    if ($select_query->execute()) {
+        $select_query->store_result();
+        $select_query->bind_result($price, $beds, $baths, $sqft, $description, $address, $year_built);
+        $select_query->fetch();
+
+    } else {
+        echo "Error executing query: " . $conn->error;
+    }
+    // Close the prepared statement
+    $select_query->close();
+}
+
+/*--- For process_edit_property: sends new inputs and updates DB ---*/
+
+function updateProperty($conn, $property_id, $price, $beds, $baths, $sqft, $residence_type, $description, $address, $year_built) {
+
+    // Insert new property
+    $update_query = $conn->prepare(
+        "UPDATE properties
+            SET price = ?,
+                beds = ?,
+                baths = ?,
+                sqft = ?,
+                description = ?,
+                address = ?,
+                residence_type = ?,
+                year_built = ?
+            WHERE property_id = ?"
+    );
+    $update_query->bind_param("iiiissssi", $price, $beds, $baths, $sqft, $description, $address, $residence_type, $year_built, $property_id);
+
+    if ($update_query->execute()) {
+        $update_query->close();
+        return true;
+    }
+    else {
+        $update_query->close();
+        return false;
+    }
+}
+
 /*--- Login: Display error message when login fails ---*/
 
 function displayErrorMessage($error) {
@@ -302,6 +349,9 @@ function displayErrorMessage($error) {
             break;
         case 4:
             return "There was a problem adding your property.";
+            break;
+        case 5:
+            return "There was a problem updating your property.";
             break;
         default:
             return "An unexpected error occurred. Please try again later.";
