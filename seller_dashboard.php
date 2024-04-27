@@ -6,7 +6,7 @@ $conn = openConnection("localhost", "lkinsey2", "lkinsey2", "lkinsey2");
 $user_id = $_SESSION['user_id'];
 
 // Welcome message
-echo "Welcome " . $_SESSION['first_name'] . " " . $_SESSION['last_name'];
+echo "Welcome, " . $_SESSION['first_name'] . " " . $_SESSION['last_name'];
 
 // Confirmation for update, delete, add
 $message = isset($_GET['message']) ? $_GET['message'] : null;
@@ -64,3 +64,4 @@ if (isset($_POST['confirm'])) {
         <?php displayPropertyCards($conn, $user_id); ?>
     </div>
 </body>
+</html>
