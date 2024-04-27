@@ -10,10 +10,15 @@ $property_id = isset($_GET['property_id']) ? $_GET['property_id'] : null;
     <title>Property Details</title>
 </head>
 <body>
-<h1>Property Details</h1>
-<div>
-    <?php if ($property_id) {
-        propertyDetails($conn, $property_id);
-    } ?>
-</div>
+    <div class="back_button">
+         <a href="seller_dashboard.php">Back</a>
+    </div>
+    <h1>Property Details</h1>
+    <a href="edit_property.php?property_id=<?=$property_id?>">Edit Property</a>
+    <div>
+        <?php if ($property_id) {
+            propertyDetails($conn, $property_id);
+        } ?>
+    </div>
 </body>
+</html>
