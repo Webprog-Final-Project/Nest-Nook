@@ -338,6 +338,21 @@ function updateProperty($conn, $property_id, $price, $beds, $baths, $sqft, $resi
     }
 }
 
+/*--- Delete Property ---*/
+
+function deleteProperty($conn, $property_id) {
+    $delete_query = $conn->prepare("DELETE FROM properties WHERE property_id = ?");
+    $delete_query->bind_param("i", $property_id);
+    if ($delete_query->execute()) {
+        $delete_query->close();
+        return true;
+    }
+    else {
+        $delete_query->close();
+        return false;
+    }
+}
+
 /*--- Display error message ---*/
 
 function displayError($error) {
@@ -356,6 +371,9 @@ function displayError($error) {
             break;
         case 5:
             return "There was a problem updating your property.";
+            break;
+        case 6:
+            return "There was a problem deleting your property.";
             break;
         default:
             return "An unexpected error occurred. Please try again later.";
@@ -379,9 +397,6 @@ function displayMessage($message) {
             return "Property successfully updated!";
             break;
         case 5:
-            return "Are you sure you want to delete this property?";
-            break;
-        case 6:
             return "Property successfully deleted!";
             break;
         default:
