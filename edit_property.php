@@ -1,9 +1,8 @@
 <?php require ('functions.php');
 session_start();
 $conn = openConnection("localhost", "lkinsey2", "lkinsey2", "lkinsey2");
+
 $property_id = isset($_GET['property_id']) ? $_GET['property_id'] : null;
-$error = isset($_GET['error']) ? $_GET['error'] : null;
-$message = isset($_GET['message']) ? $_GET['message'] : null;
 $price = '';
 $address = '';
 $beds = '';
@@ -25,10 +24,6 @@ populateForm($conn, $property_id, $price, $address, $beds, $baths, $sqft, $year_
     </div>
     <h1>Edit Property</h1>
     <form action = "process_edit_property.php?property_id=<?=$property_id?>" method="post">
-
-        <?php if ($error): ?>
-            <p><?= displayErrorMessage($error); ?></p>
-        <?php endif; ?>
 
         <?php if ($property_id) { ?>
             <div id="edit_property_images">
