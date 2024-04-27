@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
     if (addProperty($conn, $user_id, $property_id, $price, $beds, $baths, $sqft, $description, $address, $residence_type, $year_built, $date_listed)
             && addPictures($conn, $property_id, $exterior, $exterior_file_type, $interior, $interior_file_type)) {
         //Redirect on success
-        header('location: seller_dashboard.php?message=Data saved successfully');
+        header('location: seller_dashboard.php?message=3');
         exit;
     } else {
         // Redirect on error
