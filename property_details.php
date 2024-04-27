@@ -15,7 +15,20 @@ $property_id = isset($_GET['property_id']) ? $_GET['property_id'] : null;
     </div>
     <h1>Property Details</h1>
     <a href="edit_property.php?property_id=<?=$property_id?>">Edit Property</a>
-    <a href="delete_property.php?property_id=<?=$property_id?>">Delete Property</a>
+
+    <?php
+        if (!isset($_POST['delete?'])) { ?>
+            <form action="property_details.php?property_id=<?=$property_id?>" method="post">
+                <input type="submit" name="delete?" value="Delete Property">
+            </form>
+    <?php }
+
+        else { ?>
+            <form action="delete_property.php?property_id=<?=$property_id?>" method="post">
+                <input type="submit" name="deletion_confirmed" value="Confirm Deletion">
+            </form>
+    <?php } ?>
+
     <div>
         <?php if ($property_id) {
             propertyDetails($conn, $property_id);
