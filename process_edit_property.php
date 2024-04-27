@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"
 
     if (updateProperty($conn, $property_id, $price, $beds, $baths, $sqft, $residence_type, $description, $address, $year_built)) {
         //Redirect on success
-        header('location: seller_dashboard.php?message=Property successfully updated!');
+        header('location: seller_dashboard.php?message=4');
         exit;
     } else {
         // Redirect on error
