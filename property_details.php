@@ -15,6 +15,7 @@ $property_id = isset($_GET['property_id']) ? $_GET['property_id'] : null;
     </div>
     <h1>Property Details</h1>
     <a href="edit_property.php?property_id=<?=$property_id?>">Edit Property</a>
+    <a href="delete_property.php?property_id=<?=$property_id?>">Delete Property</a>
     <div>
         <?php if ($property_id) {
             propertyDetails($conn, $property_id);
