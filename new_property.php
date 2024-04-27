@@ -15,11 +15,20 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
         <a href="seller_dashboard.php">Back</a>
     </div>
         <h1>Add Property</h1>
+
+    <!--- Error adding new property --->
+    <?php if ($error) { ?>
+        <div class="error">
+            <div>
+                <?= displayError($error) ?>
+            </div>
+            <form action="signup.php" method="post">
+                <input type="submit" name="error" value="Confirm">
+            </form>
+        </div>
+    <?php } ?>
+
         <form action = "process_new_property.php" method="post" enctype="multipart/form-data">
-        
-            <?php if ($error): ?>
-                <p><?php echo displayErrorMessage($error); ?></p>
-            <?php endif; ?>
         
             <label for="price">Price</label>
             <input type="number" id="price" name="price" required><br>
