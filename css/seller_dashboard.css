@@ -1,0 +1,140 @@
+body{
+	background-color: #fcf9f0;
+	font-family: "Arial", sans-serif;
+	font-size: 16pt;
+	margin: 0;
+	padding: 0;
+	color: #2e6615;
+}
+
+.nav_bar{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #eed9c4;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.title{
+	margin: 0;
+	color: #2e6615;
+	font-family: "verdana", sans-serif;
+	font-size: 30pt;
+}
+.nav_links, .auth_links{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.nav_links{
+	flex-grow: 1;
+	text-align: center;
+}
+.nav_links li, .auth_links li{
+	display: inline;
+}
+
+.nav_links a{
+	font-size: 16pt;
+	display: inline-block;
+	padding: 10px;
+	text-decoration: none;
+	color: #2e6615;
+}
+.auth_links a{
+	font-size: 16pt;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 30px;
+	text-decoration: none;
+	color: white;
+}
+.signup, .login{
+	border: 1px solid transparent;
+	border-radius: 10px;
+	background-color: #2e6615;
+	color: white;
+}
+
+.nav_links a:hover{
+	text-decoration: underline;
+	font-weight: bold;
+}
+.auth_links a:hover{
+	text-decoration: underline;
+	font-weight: bold;
+}
+.welcome_message{
+	text-align: center;
+}
+.add_new_property_container{
+	text-align: center;
+	width: 300px;
+	height: 150px;
+	border-radius: 15px;
+	border: 1px solid #2e6615;
+	margin: 0 auto;
+}
+.add_new_property{
+	font-size: 40pt;
+	margin-top: 30px;
+	background-color: transparent;
+	border: none;
+	color: #2e6615;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+.add_new_property_container p{
+	font-size: 14pt;
+	color: #2e6615;
+}
+.property-row{
+	margin-top: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.property-row a{
+	padding: 10px;
+	border: 2px solid #d9b99b;
+	border-radius: 15px;
+	margin-top: 20px;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	font-family: "Arial", sans-serif;
+	color: #2e6615;
+	text-decoration: none;
+}
+.exterior_image img{
+	width: 100%;
+	height: auto;
+	border: transparent;
+	border-radius: 15px;
+}
+.exterior_image{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
+	flex-grow: 1;
+}
+.property-details{
+	display: flex;
+	flex-wrap: wrap;
+}
+.property-row a .property-details > div {
+    margin-right: 5px;
+}
+.separator{
+	color: #2e6615;
+}
+.price{
+	font-size: 24pt;
+	font-weight: bold;
+}
