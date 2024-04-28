@@ -24,6 +24,9 @@ $property_id = isset($_GET['property_id']) ? $_GET['property_id'] : null;
             <li class="login"><a href="login.php">Login</a></li>
         </ul>
     </nav>
+    <div class="back_button">
+            <a href="seller_dashboard.php">Back</a>
+    </div>
     <div class="content_container">
         <div class="title">
             <h2>Property Details</h2> 
