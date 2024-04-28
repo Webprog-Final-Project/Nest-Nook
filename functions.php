@@ -190,16 +190,18 @@ function displayPropertyCards($conn, $user_id) {
         $select_query->bind_result($property_id, $price, $beds, $baths, $sqft, $address);
 
         while ($select_query->fetch()) {
-            echo "<a href='property_details.php?property_id=$property_id' class='property-link'>";
-            echo "<div class='property-card'>";
-            echo "<div>" . displayExterior($conn, $property_id) . "</div>";
-            echo "<div>$" . number_format($price, 0, '', ',') . "</div>";
-            echo "<div>" . $beds . " bed" . "</div>";
-            echo "<div>" . $baths . " bath" . "</div>";
-            echo "<div>" . number_format($sqft, 0, '', ',') . " sqft" . "</div>";
-            echo "<div>" . $address . "</div>";
-            echo "</div>";
-            echo "</a>";
+        	echo "<a href='property_details.php?property_id=$property_id' class='property-link'>";
+		echo "<div class='exterior_image'>" . displayExterior($conn, $property_id) . "</div>";
+	        echo "<div class='price'>$" . number_format($price, 0, '', ',') . "</div>";
+	        echo "<div class='property-details'>";
+	        echo "<div class='bedrooms'>" . $beds . " Beds" . "</div>";
+	        echo "<div class='separator'>|</div>";
+	        echo "<div class='baths'>" . $baths . " Baths" . "</div>";
+	        echo "<div class='separator'>|</div>";
+	        echo "<div class='sqft'>" . number_format($sqft, 0, '', ',') . " sqft" . "</div>";
+	        echo "</div>";
+	        echo "<div class='address'>" . $address . "</div>";
+	        echo "</a>";
         }
     } else {
         echo "Error executing query: " . $conn->error;
