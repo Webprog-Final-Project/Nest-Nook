@@ -26,9 +26,25 @@ if (isset($_POST['confirm'])) {
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="css/seller_dashboard.css">
 </head>
 <body>
-    <h1>Seller Dashboard</h1>
+    <nav class="nav_bar">
+        <h2 class="title">Nest Nook</h2>
+        <ul class="nav_links">
+            <li class="home"><a href="homepage.html">Home</a></li>
+            <li class="buy"><a href="buy.html">Buy</a></li>
+            <li class="sell"><a hre="sell.html">Sell</a></li>
+            <li class="contac"><a hre="contact.html">Contact</a></li>
+        </ul>
+        <ul class="auth_links">
+            <li class="signup"><a href="signup.php">Sign up</a></li>
+            <li class="login"><a href="login.php">Login</a></li>
+        </ul>
+    </nav>
+    <?php
+        echo "<h2 class='welcome_message'>Welcome to the seller dashboard, ".$_SESSION['first_name']. " ". $_SESSION['last_name']." !</h2>";
+    ?>
 
     <!--- Confirmation for update, delete, add --->
     <?php if ($message) { ?>
@@ -55,12 +71,15 @@ if (isset($_POST['confirm'])) {
     <?php } ?>
 
     <!--- Add new property button --->
-    <form action = "new_property.php" method="post">
-        <input type="submit" value="+">
+    <form action = "new_property.php" method="post" >
+        <div class=add_new_property_container>
+            <input type="submit" value="+" class="add_new_property">
+            <p>Click to add a property listing</p> 
+        </div>
     </form>
 
     <!--- Display all properties --->
-    <div>
+    <div class="property-row">
         <?php displayPropertyCards($conn, $user_id); ?>
     </div>
 </body>
