@@ -139,3 +139,19 @@ body{
 	font-size: 24pt;
 	font-weight: bold;
 }
+.message{
+	text-align: center;
+	color: red;
+	font-weight: bold;
+	font-size: 20pt;
+	margin-bottom: 15px;
+}
+.message input{
+	padding: 10px;
+	font-size: 14pt;
+	border: transparent;
+	border-radius: 10px;
+	text-decoration: none;
+	background-color: red;
+	color: white;
+}
