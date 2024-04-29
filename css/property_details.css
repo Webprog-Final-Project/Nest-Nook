@@ -200,3 +200,13 @@ body{
 	background-color: #2e6615;
 	color: white;
 }
+.confirm_deletion_button{
+	padding: 10px;
+	font-size: 14pt;
+	border: transparent;
+	border-radius: 10px;
+	text-decoration: none;
+	background-color: red;
+	color: white;
+	margin-right: 10px;
+}
