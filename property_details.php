@@ -50,7 +50,7 @@ $property_id = isset($_GET['property_id']) ? $_GET['property_id'] : null;
 
                 else { ?>
                     <form action="delete_property.php?property_id=<?=$property_id?>" method="post">
-                        <input type="submit" name="deletion_confirmed" value="Confirm Deletion">
+                        <input type="submit" name="deletion_confirmed" value="Confirm Deletion" class="confirm_deletion_button">
                     </form>
             <?php } ?>
         </div>
