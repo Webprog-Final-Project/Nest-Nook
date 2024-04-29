@@ -140,7 +140,7 @@ form{
 form label{
 	margin-bottom: 10px;
 }
-form input, form textarea{
+form input[type="text"], form input[type="number"], form textarea{
 	margin-bottom: 10px;
 	padding: 10px;
 	width: 90%;
@@ -163,12 +163,21 @@ form input, form textarea{
 }
 .right-column-residence{
 	grid-column: 2/3;
-	margin-left: 10px;
-	padding: 10px;
+	display:flex;
 	align-items: center;
+}
+input[type="radio"]{
+	width: auto !important;
+	margin-right: 10px !important;
+	margin-left: 20px !important;
+}
+.right-column-residence label{
+	align-content: center !important;
+	margin-bottom: 0px !important;
 }
 form input[type="submit"]{
 	display: flex;
+	text-decoration: none;
 	justify-content: center;
 	align-content: flex-end;
 	align-items: center;
@@ -179,6 +188,9 @@ form input[type="submit"]{
 	border: 1px solid transparent;
 	border-radius: 10px;
 	background-color: #2e6615;
+	padding: 10px;
 	color: white;
-	width: 10%;
+	grid-column: 2/3;
+	font-size: 14pt;
+	width: 20%;
 }
