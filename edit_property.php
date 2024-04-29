@@ -25,8 +25,8 @@ populateForm($conn, $property_id, $price, $address, $beds, $baths, $sqft, $year_
         <ul class="nav_links">
             <li class="home"><a href="homepage.html">Home</a></li>
             <li class="buy"><a href="buy.html">Buy</a></li>
-            <li class="sell"><a hre="sell.html">Sell</a></li>
-            <li class="contact"><a hre="contact.html">Contact</a></li>
+            <li class="sell"><a href="sell.html">Sell</a></li>
+            <li class="contact"><a href="contact.html">Contact</a></li>
         </ul>
         <ul class="auth_links">
             <li class="signup"><a href="signup.php">Sign up</a></li>
