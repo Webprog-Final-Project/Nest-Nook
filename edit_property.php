@@ -26,7 +26,7 @@ populateForm($conn, $property_id, $price, $address, $beds, $baths, $sqft, $year_
             <li class="home"><a href="homepage.html">Home</a></li>
             <li class="buy"><a href="buy.html">Buy</a></li>
             <li class="sell"><a hre="sell.html">Sell</a></li>
-            <li class="contac"><a hre="contact.html">Contact</a></li>
+            <li class="contact"><a hre="contact.html">Contact</a></li>
         </ul>
         <ul class="auth_links">
             <li class="signup"><a href="signup.php">Sign up</a></li>
@@ -67,10 +67,10 @@ populateForm($conn, $property_id, $price, $address, $beds, $baths, $sqft, $year_
                 <div class="right-column-residence">
                     
                     <input type="radio" id="house" name="residence_type" value="House" required>
-                    <label for="house">House</label>
+                    <label for="house">House</label><br>
                     
                     <input type="radio" id="apartment" name="residence_type" value="Apartment" required>
-                    <label for="apartment">Apartment</label>
+                    <label for="apartment">Apartment</label><br>
 
                     <input type="radio" id="condominium" name="residence_type" value="Condominium" required>
                     <label for="condominium">Condominium</label>
