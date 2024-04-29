@@ -50,7 +50,7 @@ if (isset($_POST['confirm'])) {
                 <?= displayMessage($message) ?>
             </div>
             <form action="seller_dashboard.php" method="post">
-                <input type="submit" value="Confirm">
+                <input type="submit" value="Confirm" class="confirm_button">
             </form>
         </div>
     <?php } ?>
@@ -62,7 +62,7 @@ if (isset($_POST['confirm'])) {
                 <?= displayError($error) ?>
             </div>
             <form action="seller_dashboard.php" method="post">
-                <input type="submit" value="Confirm">
+                <input type="submit" value="Confirm" class="confirm_button">
             </form>
         </div>
     <?php } ?>
